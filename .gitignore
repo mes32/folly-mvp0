@@ -1,0 +1,3 @@
+# Ignore binaries but save bin directory
+bin/*
+!bin/.gitkeep
