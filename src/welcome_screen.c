@@ -32,7 +32,7 @@ void displayWelcomeScreen(WINDOW *window) {
         c = wgetch(window);
 
         if (c == '1') {
-            //GameWorld *gameWorld = initGameWorld(savedGames, jsonConfigFiles);
+            //GameWorld *gameWorld = initGameWorld(savedGamesDir, configuration);
             //beginGame(window, gameWorld);
             break;
         } else if (c == '2') {

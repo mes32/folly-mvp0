@@ -5,3 +5,7 @@ obj/*
 # Ignore binaries but save bin directory
 bin/*
 !bin/.gitkeep
+
+# Ignore saved games but keep the save files directory
+data/savegames/*
+!bin/savegames/.gitkeep
