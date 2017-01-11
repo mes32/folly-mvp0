@@ -1,6 +1,9 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include <ncurses.h>
+#include "ncwindow.h"
+#include "welcome_screen.h"
 
 int main() {
-    printf("folly starts here\n");
+    WINDOW *window = initWindow();
+    displayWelcomeScreen(window);
+    deleteWindow(window);
 }

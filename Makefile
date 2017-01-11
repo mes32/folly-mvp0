@@ -9,6 +9,8 @@ INCLUDES = -lncurses
 # --- List program modules and associated object files ---
 MODULES_LIST = \
 	main \
+	ncwindow \
+	welcome_screen \
 
 OBJECT_FILES = $(MODULES_LIST:%=obj/%.o)
 
