@@ -12,7 +12,7 @@
 void displayGoodbyeScreen(WINDOW *window) {
     clear();
     addTextbox(window, 0, 0, "Goodbye");
-    printStrAt(window, 0, 5, "Press any key to exit:");
+    printStrAt(window, 0, 5, "  Press any key to exit:");
     cursorToRestPosition(window);
     wgetch(window);
 }

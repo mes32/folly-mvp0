@@ -56,7 +56,7 @@ void deleteWindow(WINDOW *window) {
  * Moves the cursor to the bottom of the screen 
  */
 void cursorToRestPosition(WINDOW *window) {
-    move(row - 1, 1);
+    move(row - 1, col - 1);
 }
 
 /**
@@ -117,7 +117,7 @@ void addList(WINDOW *window, int xloc, int yloc, int n, char *strArray[]) {
     char strBuffer[128];
     for (int i = 0; i < n; i++) {
         index = i + 1;
-        int numInBuffer = sprintf(strBuffer, "  %i. %s", index, strArray[i]);
+        int numInBuffer = sprintf(strBuffer, "    %i. %s", index, strArray[i]);
         assert(numInBuffer > 0);
         printStrAt(window, xloc, yloc+i, strBuffer);
     }

@@ -13,13 +13,17 @@
 
 void displayWelcomeScreen(WINDOW *window) {
 
-    char *options[] = {"Start a new game", "Load a previous game", "Exit"};
+    char *options[] = {
+        "Start a new game", 
+        "Load a previous game", 
+        "Exit"
+    };
 
     int c;
     while (1) {
         clear();
         addTextbox(window, 0, 0, "Welcome to Folly");
-        printStrAt(window, 0, 5, "Enter a number to make a selection:");
+        printStrAt(window, 0, 5, "  Enter a number to make a selection:");
         addList(window, 0, 7, 3, options);
 
         // display command stack
@@ -28,12 +32,10 @@ void displayWelcomeScreen(WINDOW *window) {
         c = wgetch(window);
 
         if (c == '1') {
-            // New game
-            //GameWorld *gameWorld = initGameWorld();
-            //displayGameWorld(window, gameWorld);
+            //GameWorld *gameWorld = initGameWorld(savedGames, jsonConfigFiles);
+            //beginGame(window, gameWorld);
             break;
         } else if (c == '2') {
-            // Load game
             displayLoadScreen(window);
             break;
         } else if (c == '3') {
