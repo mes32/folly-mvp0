@@ -9,6 +9,7 @@ INCLUDES = -lncurses
 # --- List program modules and associated object files ---
 MODULES_LIST = \
 	main \
+	load_screen \
 	ncwindow \
 	welcome_screen \
 
