@@ -53,6 +53,20 @@ void deleteWindow(WINDOW *window) {
 }
 
 /**
+ * Return the number of rows in the current window
+ */
+int getRow(WINDOW *window) {
+    return row;
+}
+
+/**
+ * Return the number of columns in the current window
+ */
+int getCol(WINDOW *window) {
+    return col;
+}
+
+/**
  * Moves the cursor to the bottom of the screen 
  */
 void cursorToRestPosition(WINDOW *window) {
@@ -93,16 +107,15 @@ void addTextbox(WINDOW *window, int xloc, int yloc, char *str) {
     getmaxyx(stdscr, row, col);
 
     printCharAt(window, xloc, yloc, '+', colorPair);
+    printCharAt(window, xloc, yloc+1, '|', colorPair);
     printCharAt(window, xloc, yloc+2, '+', colorPair);
     for (int i = xloc+1; i < col-1; i++) {
         printCharAt(window, i, yloc, '-', colorPair);
         printCharAt(window, i, yloc+2, '-', colorPair);
     }
     printCharAt(window, col-1, yloc, '+', colorPair);
-    printCharAt(window, col-1, yloc+2, '+', colorPair);
-
-    printCharAt(window, xloc, yloc+1, '|', colorPair);
     printCharAt(window, col-1, yloc+1, '|', colorPair);
+    printCharAt(window, col-1, yloc+2, '+', colorPair);
 
     int len = strlen(str);
     int xStart = (col - len) / 2;
@@ -110,12 +123,48 @@ void addTextbox(WINDOW *window, int xloc, int yloc, char *str) {
 }
 
 /**
+ * Print multiple strings in left aligned cells inside a box that spans the width of the terminal window
+ */
+void addMultipleTextbox(WINDOW *window, int xloc, int yloc, int num, char *strArray[]) {
+    ColorPairs colorPair = COLOR_PAIR_WHITE_ON_BLACK;
+    getmaxyx(stdscr, row, col);
+
+    int strLengths[num];
+    for (int i = 0; i < num; i++) {
+        strLengths[i] = strlen(strArray[i]);
+    }
+
+    printCharAt(window, xloc, yloc, '+', colorPair);
+    printCharAt(window, xloc, yloc+1, '|', colorPair);
+    printCharAt(window, xloc, yloc+2, '+', colorPair);
+    for (int i = xloc+1; i < col-1; i++) {
+        printCharAt(window, i, yloc, '-', colorPair);
+        printCharAt(window, i, yloc+2, '-', colorPair);
+    }
+
+    int xEndBox = xloc + 2;
+    for (int i = 0; i < num; i++) {
+        xEndBox += strLengths[i] + 1;
+        printCharAt(window, xEndBox, yloc, '+', colorPair);
+        printCharAt(window, xEndBox, yloc+1, '|', colorPair);
+        printCharAt(window, xEndBox, yloc+2, '+', colorPair);
+        xEndBox += 2;
+    }
+
+    int xStartStr = xloc + 2;
+    for (int i = 0; i < num; i++) {
+        printStrAt(window, xStartStr, yloc+1, strArray[i]);
+        xStartStr += strLengths[i] + 3;
+    }
+}
+
+/**
  * Print several strings as a list
  */
-void addList(WINDOW *window, int xloc, int yloc, int n, char *strArray[]) {
+void addList(WINDOW *window, int xloc, int yloc, int num, char *strArray[]) {
     int index;
     char strBuffer[128];
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < num; i++) {
         index = i + 1;
         int numInBuffer = sprintf(strBuffer, "    %i. %s", index, strArray[i]);
         assert(numInBuffer > 0);

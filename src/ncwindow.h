@@ -32,6 +32,16 @@ void resetWindow(WINDOW *window);
 void deleteWindow(WINDOW *window);
 
 /**
+ * Return the number of rows in the current window
+ */
+int getRow(WINDOW *window);
+
+/**
+ * Return the number of columns in the current window
+ */
+int getCol(WINDOW *window);
+
+/**
  * Moves the cursor to the bottom of the screen 
  */
 void cursorToRestPosition(WINDOW *window);
@@ -55,6 +65,11 @@ void printStrAt(WINDOW *window, int xloc, int yloc, char *str);
  * Print a string centered inside a box that spans the width of the terminal window
  */
 void addTextbox(WINDOW *window, int xloc, int yloc, char *str);
+
+/**
+ * Print multiple strings in left aligned cells inside a box that spans the width of the terminal window
+ */
+void addMultipleTextbox(WINDOW *window, int xloc, int yloc, int num, char *strArray[]);
 
 /**
  * Print several strings as a list
