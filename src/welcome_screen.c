@@ -7,6 +7,7 @@
 
 #include <ncurses.h>
 #include "game_world.h"
+#include "gameplay_screen.h"
 #include "goodbye_screen.h"
 #include "load_screen.h"
 #include "ncwindow.h"
@@ -35,7 +36,7 @@ void displayWelcomeScreen(WINDOW *window) {
         if (c == '1') {
             //GameWorld *gameWorld = initGameWorld(window, savedGamesDir, configuration);
             //startGame(gameWorld);
-            GameWorld *gameWorld = initGameWorld();
+            GameWorld *gameWorld = initGameWorld(window);
             runGame(gameWorld);
             break;
         } else if (c == '2') {

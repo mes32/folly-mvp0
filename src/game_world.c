@@ -10,8 +10,9 @@
 /**
  * Initialize a new game world
  */
-GameWorld *initGameWorld() {
+GameWorld *initGameWorld(WINDOW *window) {
     GameWorld *game = malloc(sizeof(GameWorld));
+    game->window = window;
     game->dummy = 'X';
     return game;
 }
@@ -28,7 +29,7 @@ void deleteGameWorld(GameWorld **gameWorldRef) {
  * Run a game until the player quits
  */
 void runGame(GameWorld *gameWorld) {
-    //displayGame();
+    displayGameplayScreen(gameWorld->window, gameWorld);
     //int quit = 0;
     //while (quit != 0) {
         // get player input
@@ -42,5 +43,6 @@ void runGame(GameWorld *gameWorld) {
  * Load an existing game
  */
 GameWorld *loadGame() {
-
+    GameWorld *game = initGameWorld(NULL);
+    return game;
 }

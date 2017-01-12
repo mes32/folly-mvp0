@@ -8,12 +8,14 @@
 #ifndef GAME_WORLD_H_
 #define GAME_WORLD_H_
 
+#include <ncurses.h>
 #include <stdlib.h>
 
 /**
  * An object representing the game world
  */
 typedef struct _GameWorld {
+    WINDOW *window;
     char dummy;
     //PlayerCharacter *player;
     //GameMap *map;
@@ -23,7 +25,7 @@ typedef struct _GameWorld {
 /**
  * Initialize a new game world
  */
-GameWorld *initGameWorld();
+GameWorld *initGameWorld(WINDOW *window);
 
 /**
  * Free mememory used for game world

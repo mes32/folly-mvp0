@@ -10,6 +10,7 @@ INCLUDES = -lncurses
 MODULES_LIST = \
 	main \
 	game_world \
+	gameplay_screen \
 	goodbye_screen \
 	load_screen \
 	ncwindow \
