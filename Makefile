@@ -9,6 +9,7 @@ INCLUDES = -lncurses
 # --- List program modules and associated object files ---
 MODULES_LIST = \
 	main \
+	game_map \
 	game_world \
 	gameplay_screen \
 	goodbye_screen \

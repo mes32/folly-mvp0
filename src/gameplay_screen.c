@@ -13,6 +13,7 @@
 void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     clear();
     int row = getRow(window);
+    int col = getCol(window);
 
     // Display Map
     // Display gameWorld->map
@@ -37,7 +38,9 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     char *strArray[] = { hpBuffer, mpBuffer, swordBuffer, bowBuffer, armourBuffer, goldBuffer };
     addMultipleTextbox(window, 0, row-8, 6, strArray);
 
-    // Display Game Dialog
+    // Display Game Dialog Stack
+
+
 
     printStrAt(window, 0, 5, "  Press any key to exit:");
     cursorToRestPosition(window);

@@ -56,6 +56,7 @@ void deleteWindow(WINDOW *window) {
  * Return the number of rows in the current window
  */
 int getRow(WINDOW *window) {
+    getmaxyx(stdscr, row, col);
     return row;
 }
 
@@ -63,6 +64,7 @@ int getRow(WINDOW *window) {
  * Return the number of columns in the current window
  */
 int getCol(WINDOW *window) {
+    getmaxyx(stdscr, row, col);
     return col;
 }
 

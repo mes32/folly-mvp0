@@ -6,6 +6,7 @@
  */
 
 #include "game_world.h"
+#include "gameplay_screen.h"
 
 /**
  * Initialize a new game world
@@ -14,6 +15,9 @@ GameWorld *initGameWorld(WINDOW *window) {
     GameWorld *game = malloc(sizeof(GameWorld));
     game->window = window;
     game->dummy = 'X';
+
+    game->map = initGameMap();
+
     return game;
 }
 

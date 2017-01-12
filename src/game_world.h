@@ -10,6 +10,7 @@
 
 #include <ncurses.h>
 #include <stdlib.h>
+#include "game_map.h"
 
 /**
  * An object representing the game world
@@ -18,7 +19,7 @@ typedef struct _GameWorld {
     WINDOW *window;
     char dummy;
     //PlayerCharacter *player;
-    //GameMap *map;
+    GameMap *map;
     //EntitiesList *entities;
 } GameWorld;
 
