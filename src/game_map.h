@@ -9,13 +9,15 @@
 #define GAME_MAP_H_
 
 #include <stdlib.h>
-#include "game_map.h"
+#include "map_tile.h"
 
 /**
  * An object representing the game map
  */
 typedef struct _GameMap {
-    
+    int xDim;
+    int yDim;
+    MapTile*** tiles;
 } GameMap;
 
 /**

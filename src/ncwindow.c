@@ -139,7 +139,7 @@ void addMultipleTextbox(WINDOW *window, int xloc, int yloc, int num, char *strAr
     printCharAt(window, xloc, yloc, '+', colorPair);
     printCharAt(window, xloc, yloc+1, '|', colorPair);
     printCharAt(window, xloc, yloc+2, '+', colorPair);
-    for (int i = xloc+1; i < col-1; i++) {
+    for (int i = xloc+1; i < col; i++) {
         printCharAt(window, i, yloc, '-', colorPair);
         printCharAt(window, i, yloc+2, '-', colorPair);
     }

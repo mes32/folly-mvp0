@@ -14,8 +14,6 @@
 GameWorld *initGameWorld(WINDOW *window) {
     GameWorld *game = malloc(sizeof(GameWorld));
     game->window = window;
-    game->dummy = 'X';
-
     game->map = initGameMap();
 
     return game;
@@ -25,6 +23,8 @@ GameWorld *initGameWorld(WINDOW *window) {
  * Free mememory used for game world
  */
 void deleteGameWorld(GameWorld **gameWorldRef) {
+    GameWorld *game = *gameWorldRef;
+    deleteGameMap(&game->map);
     free(*gameWorldRef);
     *gameWorldRef = NULL;
 }

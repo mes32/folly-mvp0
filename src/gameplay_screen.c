@@ -16,7 +16,13 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     int col = getCol(window);
 
     // Display Map
-    // Display gameWorld->map
+    GameMap *map = gameWorld->map;
+    for (int y = 0; y < map->yDim; y++) {
+        for (int x = 0; x < map->xDim; x++) {
+            char tileCharacter = getDisplayChar(map->tiles[y][x]);
+            printCharAt(window, x, y, tileCharacter, COLOR_PAIR_WHITE_ON_BLACK);
+        }
+    } 
     // Display gameWorld->entities
     // Display gameWorld->player
 
@@ -42,7 +48,7 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
 
 
 
-    printStrAt(window, 0, 5, "  Press any key to exit:");
+    //printStrAt(window, 0, 5, "  Press any key to exit:");
     cursorToRestPosition(window);
     wgetch(window);
 }
