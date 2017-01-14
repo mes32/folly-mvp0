@@ -15,6 +15,7 @@ MODULES_LIST = \
 	goodbye_screen \
 	load_screen \
 	map_tile \
+	narrative_stack \
 	ncwindow \
 	player_character \
 	welcome_screen \

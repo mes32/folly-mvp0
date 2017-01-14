@@ -10,6 +10,7 @@
 
 #include <ncurses.h>
 #include "game_map.h"
+//#include "narrative_stack.h"
 #include "player_character.h"
 
 /**
@@ -17,6 +18,7 @@
  */
 typedef struct _GameWorld {
     WINDOW *window;
+    //NarrativeStack *narrative;
     GameMap *map;
     //EntitiesList *entities;
     PlayerCharacter *player;
