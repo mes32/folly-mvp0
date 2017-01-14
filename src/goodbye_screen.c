@@ -10,7 +10,7 @@
 #include "ncwindow.h"
 
 void displayGoodbyeScreen(WINDOW *window) {
-    clear();
+    clearWindow(window);
     addTextbox(window, 0, 0, "Goodbye");
     printStrAt(window, 0, 5, "  Press any key to exit:");
     cursorToRestPosition(window);

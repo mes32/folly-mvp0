@@ -8,9 +8,7 @@
 #include <stdlib.h>
 #include "game_world.h"
 #include "gameplay_screen.h"
-
-#include <stdio.h>
-#include <ncurses.h>
+#include "welcome_screen.h"
 
 typedef enum EvalStatusType {
     EXIT = -1,
@@ -51,13 +49,15 @@ void deleteGameWorld(GameWorld **gameWorldRef) {
  * Run a game until the player quits
  */
 void runGame(GameWorld *gameWorld) {
-    keypad(stdscr, TRUE);
-    displayGameplayScreen(gameWorld->window, gameWorld);
+    WINDOW *window = gameWorld->window;
+    displayGameplayScreen(window, gameWorld);
+
     int keyPress;
     EvalStatus status;
-    while (1) {
+    bool isPlayerDead = false;
+    while (!isPlayerDead) {
         // Read
-        keyPress = wgetch(gameWorld->window);
+        keyPress = wgetch(window);
         
         // Evaluate
         status = evaluateKeyPress(gameWorld, keyPress);
@@ -67,9 +67,19 @@ void runGame(GameWorld *gameWorld) {
             //incrementEntities(gameWorld);
         //}*/
 
+        if (hasPlayerDied(gameWorld->player)) {
+            isPlayerDead = true;
+            break;
+        }
+
         // Print
-        displayGameplayScreen(gameWorld->window, gameWorld);
+        displayGameplayScreen(window, gameWorld);
     }
+
+    char *message = "You have died.";
+    displayGameplayScreen(window, gameWorld);
+    wgetch(window);
+    displayWelcomeScreen(window);
 }
 
 /**
@@ -88,9 +98,9 @@ bool isTraversable(GameWorld *gameWorld, int deltaX, int deltaY) {
     int x = gameWorld->player->xPosition + deltaX;
     int y = gameWorld->player->yPosition + deltaY;
     if (map->tiles[y][x]->isWall || x < 0 || x >= map->xDim || y < 0 || y >= map->yDim) {
-        return FALSE;
+        return false;
     } else {
-        return TRUE;
+        return true;
     }
 }
 

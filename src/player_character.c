@@ -5,6 +5,7 @@
  *
  */
 
+#include <stdlib.h>
 #include "player_character.h"
 
 /**
@@ -51,5 +52,16 @@ void damagePlayerCharacter(PlayerCharacter *playerCharacter, int damage) {
     playerCharacter->currHealthPoints -= damage;
     if (playerCharacter->currHealthPoints < 0) {
         playerCharacter->currHealthPoints = 0;
+    }
+}
+
+/**
+ * Returns TRUE if the player's health points have been reduced to zero
+ */
+bool hasPlayerDied(PlayerCharacter *playerCharacter) {
+    if (playerCharacter->currHealthPoints <= 0) {
+        return true;
+    } else {
+        return false;
     }
 }

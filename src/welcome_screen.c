@@ -23,7 +23,7 @@ void displayWelcomeScreen(WINDOW *window) {
 
     int c;
     while (1) {
-        clear();
+        clearWindow(window);
         addTextbox(window, 0, 0, "Welcome to Folly");
         printStrAt(window, 0, 5, "  Enter a number to make a selection:");
         addList(window, 0, 7, 3, options);

@@ -9,6 +9,7 @@
 #define PLAYER_CHARACTER_H_
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 /**
  * An object representing the player character
@@ -51,5 +52,10 @@ void movePlayerCharacter(PlayerCharacter *playerCharacter, int deltaX, int delta
  * Reduce the player character's health points due to damage
  */
 void damagePlayerCharacter(PlayerCharacter *playerCharacter, int damage);
+
+/**
+ * Returns TRUE if the player's health points have been reduced to zero
+ */
+bool hasPlayerDied(PlayerCharacter *playerCharacter);
 
 #endif // PLAYER_CHARACTER_H_
