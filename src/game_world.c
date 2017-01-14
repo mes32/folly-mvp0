@@ -81,16 +81,16 @@ GameWorld *loadGame() {
 }
 
 /**
- * Returns 1 if the player may move to new relative coordinates. Otherwise returns 0.
+ * Returns TRUE if the player may move to new relative coordinates, otherwise FALSE.
  */
-int isTraversable(GameWorld *gameWorld, int deltaX, int deltaY) {
+bool isTraversable(GameWorld *gameWorld, int deltaX, int deltaY) {
     GameMap *map = gameWorld->map;
     int x = gameWorld->player->xPosition + deltaX;
     int y = gameWorld->player->yPosition + deltaY;
     if (map->tiles[y][x]->isWall || x < 0 || x >= map->xDim || y < 0 || y >= map->yDim) {
-        return 0;
+        return FALSE;
     } else {
-        return 1;
+        return TRUE;
     }
 }
 
@@ -146,6 +146,6 @@ static void tryMovement(GameWorld *gameWorld, int deltaX, int deltaY) {
         //}
     } else {
         message = "You walked into a wall. [damage 1]";
-        //damagePlayerCharacter(gameWorld->player, 1);
+        damagePlayerCharacter(gameWorld->player, 1);
     }
 }

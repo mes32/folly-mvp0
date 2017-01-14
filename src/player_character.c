@@ -17,13 +17,13 @@ PlayerCharacter *initPlayerCharacter() {
     player->xPosition = 1;
     player->yPosition = 1;
     player->totalHealthPoints = 10;
-    /*int currHealthPoints;
-    int totalManaPoints;
-    int currManaPoints;
-    int swordLevel;
-    int bowLevel;
-    int armourLevel;
-    int goldCarried;*/
+    player->currHealthPoints = 10;
+    player->totalManaPoints = 5;
+    player->currManaPoints = 5;
+    player->swordLevel = 1;
+    player->bowLevel = 1;
+    player->armourLevel = 1;
+    player->goldCarried = 5;
 
     return player;
 }
@@ -42,4 +42,14 @@ void deletePlayerCharacter(PlayerCharacter **playerCharacterRef) {
 void movePlayerCharacter(PlayerCharacter *playerCharacter, int deltaX, int deltaY) {
     playerCharacter->xPosition += deltaX;
     playerCharacter->yPosition += deltaY;
+}
+
+/**
+ * Reduce the player character's health points due to damage
+ */
+void damagePlayerCharacter(PlayerCharacter *playerCharacter, int damage) {
+    playerCharacter->currHealthPoints -= damage;
+    if (playerCharacter->currHealthPoints < 0) {
+        playerCharacter->currHealthPoints = 0;
+    }
 }

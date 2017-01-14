@@ -43,8 +43,8 @@ void runGame(GameWorld *gameWorld);
 GameWorld *loadGame();
 
 /**
- * Returns 1 if the player may move to new relative coordinates. Otherwise returns 0.
+ * Returns TRUE if the player may move to new relative coordinates, otherwise FALSE.
  */
-int isTraversable(GameWorld *gameWorld, int deltaX, int deltaY);
+bool isTraversable(GameWorld *gameWorld, int deltaX, int deltaY);
 
 #endif // GAME_WORLD_H_

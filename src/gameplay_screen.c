@@ -23,9 +23,10 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     } 
     // Display gameWorld->entities
     // Display gameWorld->player
-    int playerX = gameWorld->player->xPosition;
-    int playerY = gameWorld->player->yPosition;
-    int playerToken = gameWorld->player->token;
+    PlayerCharacter *player = gameWorld->player;
+    int playerX = player->xPosition;
+    int playerY = player->yPosition;
+    int playerToken = player->token;
     printCharAt(window, playerX, playerY, playerToken, COLOR_PAIR_WHITE_ON_BLACK);
 
     // Display Status Bar
@@ -36,7 +37,9 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     char armourBuffer[32];
     char goldBuffer[32];
 
-    sprintf(hpBuffer, "HP: %i/%i", 10, 10);
+    int currHealthPoints = player->currHealthPoints;
+    int totalHealthPoints = player->totalHealthPoints;
+    sprintf(hpBuffer, "HP: %i/%i", currHealthPoints, totalHealthPoints);
     sprintf(mpBuffer, "MP: %i/%i", 5, 5);
     sprintf(swordBuffer, "sword: lvl-%i", 1);
     sprintf(bowBuffer, "bow: lvl-%i", 1);

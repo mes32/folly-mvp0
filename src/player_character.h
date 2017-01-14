@@ -47,4 +47,9 @@ void deletePlayerCharacter(PlayerCharacter **playerCharacterRef);
  */
 void movePlayerCharacter(PlayerCharacter *playerCharacter, int deltaX, int deltaY);
 
+/**
+ * Reduce the player character's health points due to damage
+ */
+void damagePlayerCharacter(PlayerCharacter *playerCharacter, int damage);
+
 #endif // PLAYER_CHARACTER_H_
