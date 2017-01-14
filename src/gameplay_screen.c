@@ -40,11 +40,22 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     int currHealthPoints = player->currHealthPoints;
     int totalHealthPoints = player->totalHealthPoints;
     sprintf(hpBuffer, "HP: %i/%i", currHealthPoints, totalHealthPoints);
-    sprintf(mpBuffer, "MP: %i/%i", 5, 5);
-    sprintf(swordBuffer, "sword: lvl-%i", 1);
-    sprintf(bowBuffer, "bow: lvl-%i", 1);
-    sprintf(armourBuffer, "armour: lvl-%i", 1);
-    sprintf(goldBuffer, "gold: %i", 5);
+
+    int currManaPoints = player->currManaPoints;
+    int totalManaPoints = player->totalManaPoints;
+    sprintf(mpBuffer, "MP: %i/%i", currManaPoints, totalManaPoints);
+    
+    int swordLevel = player->swordLevel;
+    sprintf(swordBuffer, "sword: lvl-%i", swordLevel);
+    
+    int bowLevel = player->bowLevel;
+    sprintf(bowBuffer, "bow: lvl-%i", bowLevel);
+    
+    int armourLevel = player->armourLevel;
+    sprintf(armourBuffer, "armour: lvl-%i", armourLevel);
+    
+    int gold = player->goldCarried;
+    sprintf(goldBuffer, "gold: %i", gold);
 
     char *strArray[] = { hpBuffer, mpBuffer, swordBuffer, bowBuffer, armourBuffer, goldBuffer };
     addMultipleTextbox(window, 0, row-8, 6, strArray);
