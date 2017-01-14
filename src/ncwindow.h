@@ -22,6 +22,11 @@ const typedef enum ColorPairType {
 WINDOW *initWindow();
 
 /**
+ * Clear the window contents
+ */
+void clearWindow(WINDOW *window);
+
+/**
  * Clear the window contents and reset the dimensions to handle resizing 
  */
 void resetWindow(WINDOW *window);

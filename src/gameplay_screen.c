@@ -5,13 +5,11 @@
  *
  */
 
-#include <ncurses.h>
 #include "game_world.h"
-#include "gameplay_screen.h"
 #include "ncwindow.h"
 
 void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
-    clear();
+    clearWindow(window);
     int row = getRow(window);
     int col = getCol(window);
 
@@ -25,6 +23,10 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     } 
     // Display gameWorld->entities
     // Display gameWorld->player
+    int playerX = gameWorld->player->xPosition;
+    int playerY = gameWorld->player->yPosition;
+    int playerToken = gameWorld->player->token;
+    printCharAt(window, playerX, playerY, playerToken, COLOR_PAIR_WHITE_ON_BLACK);
 
     // Display Status Bar
     char hpBuffer[32];
@@ -46,9 +48,5 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
 
     // Display Game Dialog Stack
 
-
-
-    //printStrAt(window, 0, 5, "  Press any key to exit:");
     cursorToRestPosition(window);
-    wgetch(window);
 }

@@ -8,8 +8,8 @@
 #ifndef GAMEPLAY_SCREEN_H_
 #define GAMEPLAY_SCREEN_H_
 
-#include <ncurses.h>
 #include "game_world.h"
+#include "gameplay_screen.h"
 
 void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld);
 

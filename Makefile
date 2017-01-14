@@ -16,6 +16,7 @@ MODULES_LIST = \
 	load_screen \
 	map_tile \
 	ncwindow \
+	player_character \
 	welcome_screen \
 
 OBJECT_FILES = $(MODULES_LIST:%=obj/%.o)

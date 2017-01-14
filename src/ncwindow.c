@@ -6,6 +6,7 @@
  */
 
 #include <assert.h>
+#include <sys/ioctl.h>
 #include <ncurses.h>
 #include <string.h>
 #include "ncwindow.h"
@@ -17,20 +18,38 @@ static int row, col;
  * Initialize the ncurses window
  */
 WINDOW *initWindow() {
-    WINDOW *window = initscr();
-    start_color();
 
+
+
+initscr();
+    noecho();
+    curs_set(FALSE);
+    cbreak();   // Line buffering disabled. Pass on everything
+
+    struct winsize terminalWindow;
+    ioctl(0, TIOCGWINSZ, &terminalWindow);
+    int rows = terminalWindow.ws_row;
+    int columns = terminalWindow.ws_col;
+
+    WINDOW *window;
+    window = newwin(rows, columns, 0, 0);
+
+    keypad(window, TRUE);
+    wclear(window);
+
+    start_color();
     init_pair(COLOR_PAIR_WHITE_ON_BLACK, COLOR_WHITE, COLOR_BLACK);
     init_pair(COLOR_PAIR_GREEN_ON_BLACK, COLOR_GREEN, COLOR_BLACK);
     wbkgd(window, COLOR_PAIR(COLOR_PAIR_WHITE_ON_BLACK));
-    getmaxyx(stdscr, row, col);
 
-    cbreak();
-    noecho();
-
-    clear();
-    refresh();
     return window;
+}
+
+/**
+ * Clear the window contents
+ */
+void clearWindow(WINDOW *window) {
+    wclear(window);
 }
 
 /**
@@ -40,7 +59,7 @@ void resetWindow(WINDOW *window) {
     endwin();
     refresh();
     clear();
-    getmaxyx(stdscr, row, col);
+    getmaxyx(window, row, col);
 }
 
 /**
@@ -56,7 +75,7 @@ void deleteWindow(WINDOW *window) {
  * Return the number of rows in the current window
  */
 int getRow(WINDOW *window) {
-    getmaxyx(stdscr, row, col);
+    getmaxyx(window, row, col);
     return row;
 }
 
@@ -64,7 +83,7 @@ int getRow(WINDOW *window) {
  * Return the number of columns in the current window
  */
 int getCol(WINDOW *window) {
-    getmaxyx(stdscr, row, col);
+    getmaxyx(window, row, col);
     return col;
 }
 
@@ -72,14 +91,14 @@ int getCol(WINDOW *window) {
  * Moves the cursor to the bottom of the screen 
  */
 void cursorToRestPosition(WINDOW *window) {
-    move(row - 1, col - 1);
+    wmove(window, row - 1, col - 1);
 }
 
 /**
  * Moves the cursor to a given screen location
  */
 void moveCursor(WINDOW *window, int xloc, int yloc) {
-    move(yloc, xloc);
+    wmove(window, yloc, xloc);
 }
 
 /**
@@ -87,7 +106,7 @@ void moveCursor(WINDOW *window, int xloc, int yloc) {
  */
 void printCharAt(WINDOW *window, int xloc, int yloc, char c, ColorPairs color) {
     //attron(COLOR_PAIR(color));
-    mvaddch(yloc, xloc, c);
+    mvwaddch(window, yloc, xloc, c);
     //attroff(COLOR_PAIR(color));
 }
 
@@ -96,7 +115,7 @@ void printCharAt(WINDOW *window, int xloc, int yloc, char c, ColorPairs color) {
  */
 void printStrAt(WINDOW *window, int xloc, int yloc, char *str) {
     //attron(COLOR_PAIR(color));
-    mvprintw(yloc, xloc, str);
+    mvwprintw(window, yloc, xloc, str);
     //attroff(COLOR_PAIR(color));
 }
 

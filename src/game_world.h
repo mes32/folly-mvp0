@@ -9,18 +9,17 @@
 #define GAME_WORLD_H_
 
 #include <ncurses.h>
-#include <stdlib.h>
 #include "game_map.h"
+#include "player_character.h"
 
 /**
  * An object representing the game world
  */
 typedef struct _GameWorld {
     WINDOW *window;
-    char dummy;
-    //PlayerCharacter *player;
     GameMap *map;
     //EntitiesList *entities;
+    PlayerCharacter *player;
 } GameWorld;
 
 /**
@@ -42,5 +41,10 @@ void runGame(GameWorld *gameWorld);
  * Load an existing game
  */
 GameWorld *loadGame();
+
+/**
+ * Returns 1 if the player may move to new relative coordinates. Otherwise returns 0.
+ */
+int isTraversable(GameWorld *gameWorld, int deltaX, int deltaY);
 
 #endif // GAME_WORLD_H_
