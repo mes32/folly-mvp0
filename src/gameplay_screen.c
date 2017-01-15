@@ -8,6 +8,8 @@
 #include "game_world.h"
 #include "ncwindow.h"
 
+static const int NUM_LINES = 5;
+
 void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     clearWindow(window);
     int row = getRow(window);
@@ -58,9 +60,27 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     sprintf(goldBuffer, "gold: %i", gold);
 
     char *strArray[] = { hpBuffer, mpBuffer, swordBuffer, bowBuffer, armourBuffer, goldBuffer };
-    addMultipleTextbox(window, 0, row-8, 6, strArray);
+    addMultipleTextbox(window, 0, row - NUM_LINES - 3, 6, strArray);
 
-    // Display Game Dialog Stack
+    // Display narrative stack
+    for (int j = 1; j <= NUM_LINES; j++) {
+        for (int x = 0; x < col - 1; x ++) {
+            printCharAt(window, x, row-j, ' ', COLOR_PAIR_WHITE_ON_BLACK);
+        }
+    }
+    NarrativeStack *stack = gameWorld->narrative;
+    if (stack->length > 0) {
+        int numVisible = stack->length - stack->startIndex;
+        if (numVisible > NUM_LINES) numVisible = NUM_LINES;
+
+        NarrativeNode *node = stack->start;
+        int currentRow = row - (NUM_LINES - numVisible);
+        for (int i = 0; i < numVisible; i++) {
+            currentRow -= 1;
+            printStrAt(window, 0, currentRow, node->message);
+            node = node->previous;
+        }
+    }
 
     cursorToRestPosition(window);
 }

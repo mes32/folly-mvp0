@@ -25,7 +25,7 @@ static void tryMovement(GameWorld *gameWorld, int deltaX, int deltaY);
 GameWorld *initGameWorld(WINDOW *window) {
     GameWorld *gameWorld = malloc(sizeof(GameWorld));
     gameWorld->window = window;
-    //gameWorld->narrative = initNarrativeStack();
+    gameWorld->narrative = initNarrativeStack();
     gameWorld->map = initGameMap();
     // gameWorld->entities = initEntities();
     gameWorld->player = initPlayerCharacter();
@@ -76,7 +76,7 @@ void runGame(GameWorld *gameWorld) {
         }
     }
 
-    //pushNarrativeMessage(gameWorld->narrative, "You have died.");
+    pushNarrativeMessage(gameWorld->narrative, "You have died.");
     displayGameplayScreen(window, gameWorld);
     wgetch(window);
     displayWelcomeScreen(window);
@@ -146,21 +146,21 @@ static void tryMovement(GameWorld *gameWorld, int deltaX, int deltaY) {
             movePlayerCharacter(gameWorld->player, deltaX, deltaY);
             if (deltaX == 1) {
                 message = "You walk right.";
-                //pushNarrativeMessage(gameWorld->narrative, message);
+                pushNarrativeMessage(gameWorld->narrative, message);
             } else if (deltaX == -1) {
                 message = "You walk left.";
-                //pushNarrativeMessage(gameWorld->narrative, message);
+                pushNarrativeMessage(gameWorld->narrative, message);
             } else if (deltaY == 1) {
                 message = "You walk down.";
-                //pushNarrativeMessage(gameWorld->narrative, message);
+                pushNarrativeMessage(gameWorld->narrative, message);
             } else if (deltaY == -1) {
                 message = "You walk up.";
-                //pushNarrativeMessage(gameWorld->narrative, message);
+                pushNarrativeMessage(gameWorld->narrative, message);
             }
         //}
     } else {
         message = "You walked into a wall. [damage 1]";
-        //pushNarrativeMessage(gameWorld->narrative, message);
+        pushNarrativeMessage(gameWorld->narrative, message);
         damagePlayerCharacter(gameWorld->player, 1);
     }
 }

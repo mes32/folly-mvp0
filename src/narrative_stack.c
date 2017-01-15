@@ -16,7 +16,12 @@ static void deleteNarrativeNode(NarrativeNode **node);
  */
 NarrativeStack *initNarrativeStack() {
     NarrativeStack *stack = malloc(sizeof(NarrativeStack));
+
+    stack->length = 0;
+    stack->startIndex = 0;
     stack->head = NULL;
+    stack->start = NULL;
+
     return stack;
 }
 
@@ -31,13 +36,17 @@ void deleteNarrativeStack(NarrativeStack **stackRef) {
  * Push a new event onto the narrative stack
  */
 void pushNarrativeMessage(NarrativeStack *stack, char *message) {
-    /*NarrativeNode *node = initNarrativeNode(message);
+    stack->length += 1;
+    stack->startIndex = 0;
+
+    NarrativeNode *node = initNarrativeNode(message);
     if (stack->head == NULL) {
         stack->head = node;
     } else {
         node->previous = stack->head;
         stack->head = node;
-    }*/
+    }
+    stack->start = stack->head;
 }
 
 /**

@@ -21,7 +21,10 @@ struct _NarrativeNode {
  * An object representing all narrative events in the game
  */
 typedef struct _NarrativeStack {
+    int length;
+    int startIndex;
     NarrativeNode *head;
+    NarrativeNode *start;
 } NarrativeStack;
 
 
