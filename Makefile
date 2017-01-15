@@ -14,6 +14,7 @@ MODULES_LIST = \
 	gameplay_screen \
 	goodbye_screen \
 	help_screen \
+	inventory_screen \
 	load_screen \
 	map_tile \
 	narrative_stack \

@@ -9,6 +9,7 @@
 #include "game_world.h"
 #include "gameplay_screen.h"
 #include "help_screen.h"
+#include "inventory_screen.h"
 #include "welcome_screen.h"
 
 typedef enum EvalStatusType {
@@ -130,7 +131,7 @@ static EvalStatus evaluateKeyPress(GameWorld *gameWorld, int keyPress) {
             displayHelpScreen(gameWorld->window);
             return NO_UPDATE;
         case 'i':
-            // show inventory screen
+            displayInventoryScreen(gameWorld->window, gameWorld->player);
             return NO_UPDATE;
         case KEY_UP:
             deltaY = -1;
