@@ -10,6 +10,7 @@
 #include "gameplay_screen.h"
 #include "help_screen.h"
 #include "inventory_screen.h"
+#include "save_screen.h"
 #include "welcome_screen.h"
 
 typedef enum EvalStatusType {
@@ -32,6 +33,7 @@ GameWorld *initGameWorld(WINDOW *window) {
     gameWorld->map = initGameMap();
     // gameWorld->entities = initEntities();
     gameWorld->player = initPlayerCharacter();
+    gameWorld->unsavedChanges = false;
 
     return gameWorld;
 }
@@ -58,8 +60,7 @@ void runGame(GameWorld *gameWorld) {
 
     int keyPress;
     EvalStatus status;
-    bool isPlayerDead = false;
-    while (!isPlayerDead) {
+    while (1) {
         // Read
         keyPress = wgetch(window);
         
@@ -67,21 +68,25 @@ void runGame(GameWorld *gameWorld) {
         status = evaluateKeyPress(gameWorld, keyPress);
         if (status == EXIT) {
             break;
-        } /*else if (status == UPDATE) {
+        } else if (status == UPDATE) {
+            gameWorld->unsavedChanges = true;
             //incrementEntities(gameWorld);
-        //}*/
+        }
 
         // Print
         if (!hasPlayerDied(gameWorld->player)) {
             displayGameplayScreen(window, gameWorld);
         } else {
-            isPlayerDead = true;
+            break;
         }
     }
 
-    pushNarrativeMessage(gameWorld->narrative, "You have died.");
-    displayGameplayScreen(window, gameWorld);
-    wgetch(window);
+    if (hasPlayerDied(gameWorld->player)) {
+        pushNarrativeMessage(gameWorld->narrative, "You have died.");
+        displayGameplayScreen(window, gameWorld);
+        wgetch(window);
+    }
+
     displayWelcomeScreen(window);
 }
 
@@ -125,7 +130,7 @@ static EvalStatus evaluateKeyPress(GameWorld *gameWorld, int keyPress) {
             scrollDown(gameWorld->narrative);
             return NO_UPDATE;
         case 's':
-            // show save screen
+            displaySaveScreen(gameWorld->window, gameWorld);
             return NO_UPDATE;
         case 'h':
             displayHelpScreen(gameWorld->window);

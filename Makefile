@@ -20,6 +20,7 @@ MODULES_LIST = \
 	narrative_stack \
 	ncwindow \
 	player_character \
+	save_screen \
 	welcome_screen \
 
 OBJECT_FILES = $(MODULES_LIST:%=obj/%.o)

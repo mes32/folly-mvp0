@@ -22,6 +22,7 @@ typedef struct _GameWorld {
     GameMap *map;
     //EntitiesList *entities;
     PlayerCharacter *player;
+    bool unsavedChanges;
 } GameWorld;
 
 /**
