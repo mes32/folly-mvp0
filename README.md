@@ -1,10 +1,10 @@
 # folly-mvp0
 
-Like [folly](https://github.com/mes32/folly) but less. This is an attempt to make the simplest possible game that resembles a roguelike.
+Like [folly](https://github.com/mes32/folly) ... but less. This is an attempt to make the simplest possible game that somewhat resembles a roguelike.
 
 ## Requirements
 
-Most Unix-like systems should have all or nearly all of these already installed, but just in case you need to track one of these down.
+Most Unix-like systems should have all or nearly all of these already installed, but just in case you need to track some of these down.
 
 - [Make](https://www.gnu.org/software/make/)
 - [gcc](https://gcc.gnu.org/) (capable of compiling C99)
@@ -22,7 +22,7 @@ cd folly-mvp0
 make
 
 # Run the program
-bin/libs/folly-mvp0
+bin/folly-mvp0
 ```
 
 ## Gameplay
