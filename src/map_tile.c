@@ -5,6 +5,7 @@
  *
  */
 
+#include <stdlib.h>
 #include "map_tile.h"
 
 static char DISPLAY_WALL_TILE = '#';

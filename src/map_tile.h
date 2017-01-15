@@ -8,8 +8,6 @@
 #ifndef MAP_TILE_H_
 #define MAP_TILE_H_
 
-#include <stdlib.h>
-
 /**
  * An object representing the game map
  */

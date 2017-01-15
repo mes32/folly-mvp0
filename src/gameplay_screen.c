@@ -6,11 +6,12 @@
  */
 
 #include "game_world.h"
-#include "ncwindow.h"
+#include "gameplay_screen.h"
 
 static const int NUM_LINES = 5;
 
 void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
+    // TODO: Break sections into functions
     clearWindow(window);
     int row = getRow(window);
     int col = getCol(window);

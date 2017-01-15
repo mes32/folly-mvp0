@@ -20,7 +20,7 @@ typedef struct _GameWorld {
     WINDOW *window;
     NarrativeStack *narrative;
     GameMap *map;
-    //EntitiesList *entities;
+    // TODO: EntitiesList *entities;
     PlayerCharacter *player;
     bool unsavedChanges;
 } GameWorld;

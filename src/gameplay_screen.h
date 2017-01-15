@@ -9,7 +9,7 @@
 #define GAMEPLAY_SCREEN_H_
 
 #include "game_world.h"
-#include "gameplay_screen.h"
+#include "ncwindow.h"
 
 void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld);
 

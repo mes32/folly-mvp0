@@ -8,6 +8,8 @@
 #ifndef GOODBYE_SCREEN_H_
 #define GOODBYE_SCREEN_H_
 
+#include "ncwindow.h"
+
 void displayGoodbyeScreen(WINDOW *window);
 
 #endif // GOODBYE_SCREEN_H_

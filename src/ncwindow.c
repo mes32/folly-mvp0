@@ -18,10 +18,7 @@ static int row, col;
  * Initialize the ncurses window
  */
 WINDOW *initWindow() {
-
-
-
-initscr();
+    initscr();
     noecho();
     curs_set(FALSE);
     cbreak();   // Line buffering disabled. Pass on everything
@@ -105,6 +102,7 @@ void moveCursor(WINDOW *window, int xloc, int yloc) {
  * Print a character at a given screen location
  */
 void printCharAt(WINDOW *window, int xloc, int yloc, char c, ColorPairs color) {
+    // TODO: Replace parameter 'color' with a static const
     //attron(COLOR_PAIR(color));
     mvwaddch(window, yloc, xloc, c);
     //attroff(COLOR_PAIR(color));

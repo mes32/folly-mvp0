@@ -5,9 +5,7 @@
  *
  */
 
-#include <ncurses.h>
 #include "goodbye_screen.h"
-#include "ncwindow.h"
 
 void displayGoodbyeScreen(WINDOW *window) {
     clearWindow(window);

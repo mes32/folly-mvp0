@@ -28,12 +28,13 @@ void displayWelcomeScreen(WINDOW *window) {
         printStrAt(window, 0, 5, "  Enter a number to make a selection:");
         addList(window, 0, 7, 3, options);
 
-        // display command stack
+        // TODO: display command stack
 
         cursorToRestPosition(window);
         c = wgetch(window);
 
         if (c == '1') {
+            // TODO: Initialize game world from JSON file configuration
             //GameWorld *gameWorld = initGameWorld(window, savedGamesDir, configuration);
             //startGame(gameWorld);
             GameWorld *gameWorld = initGameWorld(window);

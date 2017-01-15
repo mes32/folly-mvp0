@@ -8,6 +8,8 @@
 #ifndef WELCOME_SCREEN_H_
 #define WELCOME_SCREEN_H_
 
+#include "ncwindow.h"
+
 void displayWelcomeScreen(WINDOW *window);
 
 #endif // WELCOME_SCREEN_H_

@@ -27,7 +27,6 @@ typedef struct _NarrativeStack {
     NarrativeNode *start;
 } NarrativeStack;
 
-
 /**
  * Initialize a new narrative stack
  */
@@ -52,6 +51,5 @@ void scrollUp(NarrativeStack *stack);
  * Scroll down to display newer narrative events
  */
 void scrollDown(NarrativeStack *stack);
-
 
 #endif // NARRATIVE_STACK_H_

@@ -29,7 +29,7 @@ NarrativeStack *initNarrativeStack() {
  * Free mememory used for narrative stack
  */
 void deleteNarrativeStack(NarrativeStack **stackRef) {
-
+    // TODO: Actually delete this object
 }
 
 /**
@@ -89,5 +89,5 @@ static NarrativeNode *initNarrativeNode(char *message) {
  * Free mememory used for narrative node
  */
 static void deleteNarrativeNode(NarrativeNode **node) {
-
+    // TODO: Actaully delete this object
 }

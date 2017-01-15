@@ -8,6 +8,8 @@
 #ifndef LOAD_SCREEN_H_
 #define LOAD_SCREEN_H_
 
+#include "ncwindow.h"
+
 void displayLoadScreen(WINDOW *window);
 
 #endif // LOAD_SCREEN_H_

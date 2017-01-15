@@ -31,7 +31,7 @@ GameWorld *initGameWorld(WINDOW *window) {
     gameWorld->window = window;
     gameWorld->narrative = initNarrativeStack();
     gameWorld->map = initGameMap();
-    // gameWorld->entities = initEntities();
+    // TODO: gameWorld->entities = initEntities();
     gameWorld->player = initPlayerCharacter();
     gameWorld->unsavedChanges = false;
 
@@ -162,7 +162,7 @@ static EvalStatus evaluateKeyPress(GameWorld *gameWorld, int keyPress) {
 static void tryMovement(GameWorld *gameWorld, int deltaX, int deltaY) {
     if (isTraversable(gameWorld, deltaX, deltaY)) {
         //if (isEnemy(gameWorld, deltaX, deltaY)) {
-            // attack the enemy
+            // TODO: attack the enemy
         //} else {
             movePlayerCharacter(gameWorld->player, deltaX, deltaY);
             if (deltaX == 1) {

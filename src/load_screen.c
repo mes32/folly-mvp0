@@ -5,9 +5,7 @@
  *
  */
 
-#include <ncurses.h>
 #include "load_screen.h"
-#include "ncwindow.h"
 
 void displayLoadScreen(WINDOW *window) {
 
@@ -27,7 +25,7 @@ void displayLoadScreen(WINDOW *window) {
         printStrAt(window, 0, 5, "  Select game to load:");
         addList(window, 0, 7, 6, options);
 
-        // display command stack
+        // TODO: display command stack
 
         cursorToRestPosition(window);
         c = wgetch(window);
