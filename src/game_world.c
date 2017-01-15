@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "game_world.h"
 #include "gameplay_screen.h"
+#include "help_screen.h"
 #include "welcome_screen.h"
 
 typedef enum EvalStatusType {
@@ -24,6 +25,7 @@ static void tryMovement(GameWorld *gameWorld, int deltaX, int deltaY);
  */
 GameWorld *initGameWorld(WINDOW *window) {
     GameWorld *gameWorld = malloc(sizeof(GameWorld));
+
     gameWorld->window = window;
     gameWorld->narrative = initNarrativeStack();
     gameWorld->map = initGameMap();
@@ -121,6 +123,15 @@ static EvalStatus evaluateKeyPress(GameWorld *gameWorld, int keyPress) {
         case 'z':
             scrollDown(gameWorld->narrative);
             return NO_UPDATE;
+        case 's':
+            // show save screen
+            return NO_UPDATE;
+        case 'h':
+            displayHelpScreen(gameWorld->window);
+            return NO_UPDATE;
+        case 'i':
+            // show inventory screen
+            return NO_UPDATE;
         case KEY_UP:
             deltaY = -1;
             tryMovement(gameWorld, deltaX, deltaY);
@@ -143,30 +154,23 @@ static EvalStatus evaluateKeyPress(GameWorld *gameWorld, int keyPress) {
 }
 
 static void tryMovement(GameWorld *gameWorld, int deltaX, int deltaY) {
-    char *message;
-
     if (isTraversable(gameWorld, deltaX, deltaY)) {
         //if (isEnemy(gameWorld, deltaX, deltaY)) {
             // attack the enemy
         //} else {
             movePlayerCharacter(gameWorld->player, deltaX, deltaY);
             if (deltaX == 1) {
-                message = "You walk right.";
-                pushNarrativeMessage(gameWorld->narrative, message);
+                pushNarrativeMessage(gameWorld->narrative, "You walk right.");
             } else if (deltaX == -1) {
-                message = "You walk left.";
-                pushNarrativeMessage(gameWorld->narrative, message);
+                pushNarrativeMessage(gameWorld->narrative, "You walk left.");
             } else if (deltaY == 1) {
-                message = "You walk down.";
-                pushNarrativeMessage(gameWorld->narrative, message);
+                pushNarrativeMessage(gameWorld->narrative, "You walk down.");
             } else if (deltaY == -1) {
-                message = "You walk up.";
-                pushNarrativeMessage(gameWorld->narrative, message);
+                pushNarrativeMessage(gameWorld->narrative, "You walk up.");
             }
         //}
     } else {
-        message = "You walked into a wall. [damage 1]";
-        pushNarrativeMessage(gameWorld->narrative, message);
+        pushNarrativeMessage(gameWorld->narrative, "You walked into a wall. [damage 1]");
         damagePlayerCharacter(gameWorld->player, 1);
     }
 }

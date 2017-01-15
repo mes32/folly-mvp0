@@ -66,7 +66,7 @@ void scrollDown(NarrativeStack *stack) {
     if (stack->startIndex > 0) {
         stack->startIndex -= 1;
 
-        // TODO: Nodes would benefit from next pointer
+        // TODO: Nodes would benefit from a 'next' pointer for forward traversal
         NarrativeNode *node = stack->head;
         for (int i = 0; i < stack->startIndex; i++) {
             node = node->previous;

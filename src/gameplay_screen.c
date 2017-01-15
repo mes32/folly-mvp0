@@ -22,9 +22,11 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
             char tileCharacter = getDisplayChar(map->tiles[y][x]);
             printCharAt(window, x, y, tileCharacter, COLOR_PAIR_WHITE_ON_BLACK);
         }
-    } 
+    }
+
     // Display gameWorld->entities
-    // Display gameWorld->player
+
+    // Display Player Character
     PlayerCharacter *player = gameWorld->player;
     int playerX = player->xPosition;
     int playerY = player->yPosition;
@@ -62,7 +64,7 @@ void displayGameplayScreen(WINDOW *window, GameWorld *gameWorld) {
     char *strArray[] = { hpBuffer, mpBuffer, swordBuffer, bowBuffer, armourBuffer, goldBuffer };
     addMultipleTextbox(window, 0, row - NUM_LINES - 3, 6, strArray);
 
-    // Display narrative stack
+    // Display Narrative Stack
     for (int j = 1; j <= NUM_LINES; j++) {
         for (int x = 0; x < col - 1; x ++) {
             printCharAt(window, x, row-j, ' ', COLOR_PAIR_WHITE_ON_BLACK);

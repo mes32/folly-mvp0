@@ -13,6 +13,7 @@ MODULES_LIST = \
 	game_world \
 	gameplay_screen \
 	goodbye_screen \
+	help_screen \
 	load_screen \
 	map_tile \
 	narrative_stack \
