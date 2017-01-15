@@ -115,6 +115,12 @@ static EvalStatus evaluateKeyPress(GameWorld *gameWorld, int keyPress) {
     switch(keyPress) {
         case 'q':
             return EXIT;
+        case 'a':
+            scrollUp(gameWorld->narrative);
+            return NO_UPDATE;
+        case 'z':
+            scrollDown(gameWorld->narrative);
+            return NO_UPDATE;
         case KEY_UP:
             deltaY = -1;
             tryMovement(gameWorld, deltaX, deltaY);

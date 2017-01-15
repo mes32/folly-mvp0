@@ -43,4 +43,15 @@ void deleteNarrativeStack(NarrativeStack **stackRef);
  */
 void pushNarrativeMessage(NarrativeStack *stack, char *message);
 
+/**
+ * Scroll up to display older narrative events
+ */
+void scrollUp(NarrativeStack *stack);
+
+/**
+ * Scroll down to display newer narrative events
+ */
+void scrollDown(NarrativeStack *stack);
+
+
 #endif // NARRATIVE_STACK_H_

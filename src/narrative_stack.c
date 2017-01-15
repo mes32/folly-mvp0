@@ -50,6 +50,32 @@ void pushNarrativeMessage(NarrativeStack *stack, char *message) {
 }
 
 /**
+ * Scroll up to display older narrative events
+ */
+void scrollUp(NarrativeStack *stack) {
+    if (stack->startIndex < stack->length - 1) {
+        stack->startIndex += 1;
+        stack->start = stack->start->previous;
+    }
+}
+
+/**
+ * Scroll down to display newer narrative events
+ */
+void scrollDown(NarrativeStack *stack) {
+    if (stack->startIndex > 0) {
+        stack->startIndex -= 1;
+
+        // TODO: Nodes would benefit from next pointer
+        NarrativeNode *node = stack->head;
+        for (int i = 0; i < stack->startIndex; i++) {
+            node = node->previous;
+        }
+        stack->start = node;
+    }
+}
+
+/**
  * Initialize a new narrative node
  */
 static NarrativeNode *initNarrativeNode(char *message) {
